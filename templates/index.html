@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel Lookup</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- ─── Header ─────────────────────────────────────────────────────── -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">🔍</span>
+        <span class="brand-name">Excel Lookup</span>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── Main ────────────────────────────────────────────────────────── -->
+  <main class="main-container">
+
+    <!-- Upload / Load card -->
+    <section class="glass-card upload-card" aria-label="Load workbook">
+      <h2 class="card-title">Load Workbook</h2>
+      <div class="upload-row">
+        <label class="file-label" for="fileInput">
+          <span class="file-icon">📂</span>
+          <span id="fileLabel">Choose .xlsx / .xlsm file…</span>
+          <input id="fileInput" type="file" accept=".xlsx,.xlsm" hidden />
+        </label>
+        <button id="uploadBtn" class="btn btn-primary" disabled>Upload</button>
+        <button id="loadDefaultBtn" class="btn btn-secondary">Load Sample</button>
+      </div>
+      <div id="uploadStatus" class="status-msg" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- Search card -->
+    <section class="glass-card search-card" aria-label="Search">
+      <h2 class="card-title">Search</h2>
+      <div class="search-row">
+        <div class="select-wrap">
+          <label for="sheetSelect" class="sr-only">Sheet</label>
+          <select id="sheetSelect" class="select" disabled>
+            <option value="">— select sheet —</option>
+          </select>
+        </div>
+        <div class="input-wrap">
+          <label for="keyInput" class="sr-only">Key</label>
+          <input
+            id="keyInput"
+            type="text"
+            class="text-input"
+            placeholder="Enter API key name…"
+            disabled
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button id="searchBtn" class="btn btn-primary" disabled>Search</button>
+        <button id="clearBtn" class="btn btn-ghost" disabled>Clear</button>
+      </div>
+      <div id="searchStatus" class="status-msg" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- Results -->
+    <section id="resultsSection" class="results-section" aria-label="Results" hidden>
+      <div class="results-header">
+        <h2 class="card-title" id="resultsHeading">Results</h2>
+        <button id="exportBtn" class="btn btn-ghost btn-sm">⬇ Export CSV</button>
+      </div>
+      <div id="resultsGrid" class="results-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- ─── Toast ───────────────────────────────────────────────────────── -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
